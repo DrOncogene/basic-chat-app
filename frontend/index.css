@@ -29,6 +29,7 @@ main {
   margin: 5rem auto 0;
   position: relative;
   overflow: hidden;
+  border-radius: 1rem;
 }
 
 #msg-form {
@@ -41,6 +42,7 @@ main {
   justify-content: space-between;
   align-items: center;
   background: #a3a3a3;
+  z-index: 100;
 }
 
 #msg-input {
@@ -74,24 +76,31 @@ button:hover {
 
 #status {
   position: absolute;
-  bottom: 4rem;
+  top: 0;
   left: 50%;
   font-style: italic;
+  font-weight: lighter;
+  font-size: 0.75rem;
   color: gray;
   width: 100px;
   translate: -50% 0;
-  display: none;
+  display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 1;
 }
 
 #status::before {
   content: '';
-  width: 10px;
-  height: 10px;
+  width: 5px;
+  height: 5px;
   border-radius: 50%;
-  background-color: green;
+  background-color: red;
   margin-right: 5px;
+}
+
+#status.connected::before {
+  background-color: green;
 }
 
 #messages {
@@ -108,17 +117,18 @@ button:hover {
 .recieved {
   background: #e3e3e3;
   padding: 0.5rem 1rem;
-  margin: 5px 0;
-  width: max-content;
+  margin: 2px 0;
+  max-width: 60%;
+  z-index: 50;
 }
 
 .sent {
-  border-top-left-radius: 5rem;
-  border-bottom-left-radius: 5rem;
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
 }
 
 .recieved {
-  border-top-right-radius: 5rem;
-  border-bottom-right-radius: 5rem;
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
   align-self: flex-start;
 }

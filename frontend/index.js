@@ -1,6 +1,6 @@
 import { io } from "https://cdn.socket.io/4.4.1/socket.io.esm.min.js"
 
-const chatSocket = io('http://127.0.0.1:5000/chat')
+const chatSocket = io('ws://127.0.0.1:5000/chat')
 const form = document.getElementById('msg-form')
 const input = document.getElementById('msg-input')
 const status = document.getElementById('status')
@@ -8,10 +8,19 @@ const msgList = document.getElementById('messages')
 
 chatSocket.on('connect', () => {
   console.log('connected')
-  status.style.display = 'flex'
+  setTimeout(() => {
+    status.innerText = 'Connected'
+    status.classList.add('connected')
+  }, 1000)
 })
 
-chatSocket.on('chat', (msg = 'ldllfd') => {
+chatSocket.on('disconnect', () => {
+  console.log('disconnected')
+  status.innerText = 'Connecting...'
+  status.classList.remove('connected')
+})
+
+chatSocket.on('chat', (msg) => {
   if (msg.trim().length === 0) {
     return
   }
